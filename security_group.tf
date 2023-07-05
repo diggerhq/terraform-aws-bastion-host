@@ -5,6 +5,7 @@ resource "aws_security_group" "bastion_sg" {
 
   lifecycle {
     create_before_destroy = true
+    ignore_changes = ["ingress"]
   }
 
   tags = var.tags

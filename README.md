@@ -4,6 +4,7 @@ Creates bastion host with allowed SSH access from specific IPs.
 
 Features:
 * Allow access from specific CIDRs (Default is `0.0.0.0/0`)
+* any manual changes to security group ingress rules are being ignored
 
 ## Requirements
 Terraform >=0.12 required. You can use release [v0.3.1](https://github.com/jetbrains-infra/terraform-aws-bastion-host/releases/tag/v0.3.1) for older versions
