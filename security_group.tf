@@ -18,6 +18,10 @@ resource "aws_security_group_rule" "bastion_sg_ssh_rule" {
   type              = "ingress"
   cidr_blocks       = var.allowed_hosts
   security_group_id = aws_security_group.bastion_sg.id
+
+  lifecycle {
+    ignore_changes = [cidr_blocks]
+  }
 }
 
 resource "aws_security_group_rule" "bastion_sg_internet_rule" {
