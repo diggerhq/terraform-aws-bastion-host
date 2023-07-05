@@ -38,6 +38,6 @@ resource "aws_instance" "bastion_instance" {
     ignore_changes = [ami]
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {"Name": var.instance_name})
 }
 

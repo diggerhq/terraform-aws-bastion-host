@@ -29,3 +29,7 @@ variable "internal_networks" {
 
 variable "tags" {
 }
+
+variable "instance_name" {
+}
+
