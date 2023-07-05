@@ -10,7 +10,7 @@ resource "aws_security_group" "bastion_sg" {
   tags = var.tags
 }
 
-resource "aws_security_group_rule" "sg_ssh_rule" {
+resource "aws_security_group_rule" "bastion_sg_ssh_rule" {
   protocol          = "TCP"
   from_port         = 22
   to_port           = 22
@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "sg_ssh_rule" {
   security_group_id = aws_security_group.bastion_sg.id
 }
 
-resource "aws_security_group_rule" "sg_internet_rule" {
+resource "aws_security_group_rule" "bastion_sg_internet_rule" {
   protocol          = "-1"
   from_port         = 0
   to_port           = 0
@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "sg_internet_rule" {
   security_group_id = aws_security_group.bastion_sg.id
 }
 
-resource "aws_security_group_rule" "sg_intranet_rule" {
+resource "aws_security_group_rule" "bastion_sg_intranet_rule" {
   protocol          = "-1"
   from_port         = 0
   to_port           = 0
