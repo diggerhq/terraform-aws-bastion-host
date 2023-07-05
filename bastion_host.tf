@@ -1,5 +1,5 @@
 data "aws_ami" "amazon_linux_ami" {
-  owners = ["amazon"]
+  owners      = ["amazon"]
   most_recent = true
 
   filter {
@@ -8,24 +8,24 @@ data "aws_ami" "amazon_linux_ami" {
   }
 }
 
-data "aws_subnet" "public" {
-  id = local.subnet_id
+data "aws_subnet" "public_subnet" {
+  id = local.public_subnet_id
 }
 
 locals {
-  vpc_id        = data.aws_subnet.public.vpc_id
-  ami_id        = data.aws_ami.amazon_linux_ami.id
-  disk_size     = var.disk_size
-  subnet_id     = var.subnet_id
-  ssh_key       = var.ssh_key
-  instance_type = var.instance_type
+  vpc_id           = data.aws_subnet.public_subnet.vpc_id
+  ami_id           = data.aws_ami.amazon_linux_ami.id
+  disk_size        = var.disk_size
+  public_subnet_id = var.subnet_id
+  ssh_key          = var.ssh_key
+  instance_type    = var.instance_type
 }
 
-resource "aws_instance" "server" {
+resource "aws_instance" "bastion_instance" {
   ami                         = local.ami_id
   instance_type               = local.instance_type
   key_name                    = local.ssh_key
-  subnet_id                   = local.subnet_id
+  subnet_id                   = local.public_subnet_id
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
   associate_public_ip_address = true
 
